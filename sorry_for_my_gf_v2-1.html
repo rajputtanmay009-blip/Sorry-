@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Operation: Get Her to Forgive Me 💗</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Trebuchet MS",sans-serif;background:#fff0f7;color:#57253d;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 15% 15%,#fff 0 5%,transparent 25%),radial-gradient(circle at 85% 25%,#ffd0e3,transparent 28%),linear-gradient(135deg,#fff4f8,#ffddeb);z-index:-2}
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}
+.float{position:absolute;animation:rise linear infinite;opacity:.65}
+@keyframes rise{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+.wrap{max-width:850px;margin:auto;padding:18px 14px 70px}
+.card{background:rgba(255,255,255,.88);border:2px solid #ffc0d7;border-radius:30px;padding:28px;margin:15px 0;box-shadow:0 18px 50px #d45b8b25}
+.hero{text-align:center;padding:38px 20px}
+.tag{display:inline-block;background:#ec5a94;color:#fff;border-radius:999px;padding:8px 14px;font-weight:800}
+h1{font-size:clamp(42px,12vw,78px);line-height:.9;margin:18px 0 10px;color:#df3f7c}
+h2{color:#d83e78}p{font-size:18px;line-height:1.55}
+button{border:0;border-radius:999px;padding:14px 20px;font-size:17px;font-weight:800;cursor:pointer;transition:.18s;box-shadow:0 8px 18px #c8387025}
+button:hover{transform:translateY(-3px) scale(1.02)}
+.primary{background:#eb548f;color:white}.secondary{background:#ffe0ec;color:#b62d63}
+.row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.teddy{font-size:105px;animation:bounce 1.8s infinite}.teddy small{font-size:18px}
+@keyframes bounce{50%{transform:translateY(-10px) rotate(3deg)}}
+.meter{height:18px;background:#ffe0eb;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff79a9,#df3f7c);transition:1s}
+.status{text-align:center;font-weight:900;color:#d73e78;margin:10px}
+.choice{margin:18px 0;padding:20px;background:#fff6fa;border-radius:22px;text-align:center}
+#runaway{position:relative}
+.noBtn{background:#eee;color:#777}
+.letter{border:2px dashed #ef82aa;background:#fffafb}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.promise div{padding:18px;background:#fff0f6;border-radius:20px;text-align:center}.emoji{font-size:34px;display:block}
+#secret{display:none;text-align:center}.big{font-size:31px;font-weight:900;color:#df3f7c}
+canvas{width:100%;max-width:500px;height:180px;background:#fff5f9;border-radius:20px;touch-action:none}
+.toast{position:fixed;left:50%;bottom:25px;transform:translateX(-50%) translateY(100px);background:#542036;color:#fff;padding:14px 20px;border-radius:999px;z-index:50;transition:.35s;font-weight:700;text-align:center}.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:650px){.card{padding:22px 16px}.promise{grid-template-columns:1fr}p{font-size:17px}}
+</style>
+</head>
+<body>
+<div id="sky"></div>
+<div class="toast" id="toast"></div>
+
+<div class="wrap">
+<section class="card hero">
+  <span class="tag">🚨 TOP SECRET OPERATION 🚨</span>
+  <h1>PLEASE DON'T<br>BE MAD 💗</h1>
+  <div class="teddy">🧸</div>
+  <p><b>Mission objective:</b> make my favourite person smile again.</p>
+  <p>Estimated difficulty: <b>EXTREMELY HIGH</b> 😭</p>
+  <button class="primary" onclick="go('mission')">BEGIN OPERATION ▶</button>
+</section>
+
+<section class="card" id="mission">
+  <h2>🫡 Mission Briefing</h2>
+  <p>I have committed the terrible crime of hurting your feelings. The investigation is complete.</p>
+  <div class="choice">
+    <b>Who is responsible?</b><br><br>
+    <div class="row">
+      <button class="primary" onclick="charge('ME. Unfortunately. 😭')">Me 😔</button>
+      <button class="secondary" onclick="charge('The evidence says... me. 😭')">Obviously you 🙄</button>
+    </div>
+    <div class="status" id="charge"></div>
+  </div>
+  <div class="choice">
+    <b>How sorry am I?</b>
+    <div class="meter"><span id="meter"></span></div>
+    <p id="meterText">Calculating...</p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>🎮 Mini-Game: Catch the Love</h2>
+  <p>Tap the ❤️ as many times as possible. Every click increases my apology power.</p>
+  <div style="text-align:center">
+    <button class="primary" id="heartGame" onclick="catchHeart()">❤️</button>
+    <p><b>Love points: <span id="points">0</span></b></p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>😈 The Extremely Serious Forgiveness Test</h2>
+  <div class="choice">
+    <p><b>Would you accept one sincere apology?</b></p>
+    <div class="row">
+      <button class="primary" onclick="yes()">YES 💗</button>
+      <button class="secondary" onclick="soft('I understand. I will wait. 🥺')">Not yet</button>
+    </div>
+  </div>
+  <div class="choice">
+    <p><b>Can I have one hug?</b></p>
+    <div class="row">
+      <button class="primary" onclick="hug()">COME HERE 🤗</button>
+      <button class="secondary" onclick="soft('Hug request denied. I shall remain dramatically sad. 🧍')">Absolutely not 😤</button>
+    </div>
+  </div>
+  <div class="choice">
+    <p><b>Do I get another chance?</b></p>
+    <div class="row">
+      <button class="primary" onclick="soft('I WILL NOT WASTE IT. 🫡💗')">Fine.</button>
+      <button class="secondary" id="runaway" onclick="noClick()">NO 😡</button>
+    </div>
+  </div>
+</section>
+
+<section class="card letter">
+  <h2>💌 The part where I stop being an idiot</h2>
+  <p>I’m genuinely sorry.</p>
+  <p>I know that clicking a cute website button doesn't magically fix anything. I made this because I wanted to put some effort into saying what I should have said properly.</p>
+  <p>Your feelings matter to me. I don't want to win an argument; I want to understand you, fix what I did wrong, and be better about it.</p>
+  <p>I'm sorry for hurting you. You deserve patience, respect, reassurance, and a boyfriend who actually thinks before doing stupid things.</p>
+  <p><b>I love you. And yes, I know that doesn't excuse anything. ❤️</b></p>
+  <p style="text-align:right;font-size:21px"><b>— Your certified idiot 💗</b></p>
+</section>
+
+<section class="card">
+  <h2>🌷 Three promises</h2>
+  <div class="promise">
+    <div><span class="emoji">👂</span><b>Listen</b><br>I'll listen instead of getting defensive.</div>
+    <div><span class="emoji">🧠</span><b>Think</b><br>I'll think about how my actions affect you.</div>
+    <div><span class="emoji">🌱</span><b>Improve</b><br>I'll show it through actions, not just words.</div>
+  </div>
+</section>
+
+<section class="card" style="text-align:center">
+  <h2>✍️ Sign the Peace Treaty</h2>
+  <p>Write a tiny heart or your initials below. This is completely optional.</p>
+  <canvas id="draw" width="700" height="250"></canvas><br><br>
+  <button class="secondary" onclick="clearCanvas()">Clear</button>
+  <button class="primary" onclick="seal()">Seal Treaty 💗</button>
+</section>
+
+<section class="card" id="final" style="text-align:center">
+  <h2>🏆 FINAL BOSS</h2>
+  <p>There is only one button left.</p>
+  <button class="primary" onclick="forgive()">I FORGIVE YOU 💕</button>
+  <button class="secondary" onclick="soft('I shall respectfully wait outside the forgiveness door. 🚪🥺')">I'M STILL MAD 😤</button>
+</section>
+
+<section class="card" id="secret">
+  <div class="big">MISSION ACCOMPLISHED 💗</div>
+  <p>❤️ Forgiveness detected.</p>
+  <p>Deploying emergency cuddles...</p>
+  <div style="font-size:70px">🫂💗🧸</div>
+  <p><b>Thank you for giving me another chance.</b></p>
+  <button class="primary" onclick="confetti();go('secret')">ONE MORE HUG 🤗</button>
+</section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function go(id){$(id).scrollIntoView({behavior:'smooth',block:'center'})}
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2600)}
+function charge(t){$('charge').textContent=t;setTimeout(()=>{$('meter').style.width='100%';$('meterText').textContent='Apology power: 1000% 💗'},250)}
+let points=0;
+function catchHeart(){points++;$('points').textContent=points;let b=$('heartGame');b.style.transform=`scale(${1+Math.min(points,15)*.02}) rotate(${points%2?'-4':'4'}deg)`;if(points===10)toast('10 love points! She is legally required to consider forgiving you. (Not really.) 😭')}
+function yes(){toast('GOOD. Beginning rehabilitation of boyfriend... 🫡💗');confetti()}
+function hug(){toast('HUG PROTOCOL ACTIVATED. 🤗💗');confetti()}
+function soft(t){toast(t)}
+function noClick(){let b=$('runaway');b.style.position='fixed';b.style.left=(Math.random()*70+10)+'vw';b.style.top=(Math.random()*70+10)+'vh';toast('The NO button has escaped. Tactical retreat detected. 🏃')}
+function forgive(){$('secret').style.display='block';go('secret');confetti();toast('FORGIVENESS DETECTED. MISSION SUCCESS. 🫡💗')}
+function confetti(){let s=['💗','💕','💖','❤️','🌸','✨','🧸'];for(let i=0;i<55;i++){let x=document.createElement('div');x.className='float';x.textContent=s[Math.floor(Math.random()*s.length)];x.style.left=Math.random()*100+'vw';x.style.fontSize=15+Math.random()*25+'px';x.style.animationDuration=3+Math.random()*4+'s';x.style.animationDelay=Math.random()*.5+'s';$('sky').appendChild(x);setTimeout(()=>x.remove(),8000)}}
+for(let i=0;i<18;i++){let x=document.createElement('div');x.className='float';x.textContent=['♡','♥','💕','✦'][Math.floor(Math.random()*4)];x.style.left=Math.random()*100+'vw';x.style.fontSize=16+Math.random()*20+'px';x.style.animationDuration=6+Math.random()*7+'s';x.style.animationDelay=-Math.random()*8+'s';$('sky').appendChild(x)}
+const c=$('draw'),ctx=c.getContext('2d');let drawing=false;
+function pos(e){let r=c.getBoundingClientRect(),p=e.touches?e.touches[0]:e;return[(p.clientX-r.left)*c.width/r.width,(p.clientY-r.top)*c.height/r.height]}
+function start(e){drawing=true;let [x,y]=pos(e);ctx.beginPath();ctx.moveTo(x,y);e.preventDefault()}
+function move(e){if(!drawing)return;let [x,y]=pos(e);ctx.lineTo(x,y);ctx.strokeStyle='#df3f7c';ctx.lineWidth=5;ctx.lineCap='round';ctx.stroke();e.preventDefault()}
+c.addEventListener('mousedown',start);c.addEventListener('mousemove',move);window.addEventListener('mouseup',()=>drawing=false);
+c.addEventListener('touchstart',start,{passive:false});c.addEventListener('touchmove',move,{passive:false});c.addEventListener('touchend',()=>drawing=false);
+function clearCanvas(){ctx.clearRect(0,0,c.width,c.height)}
+function seal(){toast('Peace treaty signed. Officially adorable. 💗');confetti()}
+</script>
+</body>
+</html>
